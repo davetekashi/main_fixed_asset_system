@@ -1,0 +1,11 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Item Detail{% endblock %}
+
+{% block content %}
+<h1>{{ item.name }}</h1>
+<p><strong>Category:</strong> {{ item.category.name }}</p>
+<p><strong>Quantity:</strong> {{ item.quantity }}</p>
+<p><strong>Price:</strong> ${{ item.price }}</p>
+<a href="{% url 'item_edit' item.pk %}">Edit</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+</head>
+<body>
+    <h1>Inventory</h1>
+    <ul>
+        {% for item in items %}
+            <li>
+                <a href="{% url 'item_detail' item.pk %}">{{ item.name }}</a>
+                ({{ item.quantity }} in stock, ${{ item.price }})
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'item_new' %}">Add new item</a>
+</body>
+</html>
