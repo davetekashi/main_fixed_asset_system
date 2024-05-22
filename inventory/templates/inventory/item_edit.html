@@ -1,9 +1,9 @@
 {% extends 'inventory/base.html' %}
 
-{% block title %}New Item{% endblock %}
+{% block title %}{{ form.instance.pk|yesno:"Edit,New" }} Item{% endblock %}
 
 {% block content %}
-<h1>{% if form.instance.pk %}Edit{% else %}New{% endif %} Item</h1>
+<h1>{{ form.instance.pk|yesno:"Edit,New" }} Item</h1>
 <form method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -22,6 +22,14 @@
         {{ form.price.label_tag }}
         {{ form.price }}
     </div>
-    <button type="submit">Save</button>
+    <div class="form-group">
+        {{ form.status.label_tag }}
+        {{ form.status }}
+    </div>
+    <div class="form-group">
+        {{ form.date_of_purchase.label_tag }}
+        {{ form.date_of_purchase }}
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
 </form>
 {% endblock %}

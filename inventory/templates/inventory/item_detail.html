@@ -7,5 +7,17 @@
 <p><strong>Category:</strong> {{ item.category.name }}</p>
 <p><strong>Quantity:</strong> {{ item.quantity }}</p>
 <p><strong>Price:</strong> ${{ item.price }}</p>
-<a href="{% url 'item_edit' item.pk %}">Edit</a>
+<p><strong>Status:</strong> 
+    {% if item.status == 'in_stock' %}
+        <span class="status-in_stock">In Stock</span>
+    {% else %}
+        <span class="status-in_use">In Use</span>
+    {% endif %}
+</p>
+<p><strong>Date of Purchase:</strong> {{ item.date_of_purchase }}</p>
+<a href="{% url 'item_edit' item.pk %}" class="btn btn-primary">Edit</a>
+<form action="{% url 'item_delete' item.pk %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
 {% endblock %}

@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
 from .forms import ItemForm
@@ -34,3 +31,9 @@ def item_edit(request, pk):
         form = ItemForm(instance=item)
     return render(request, 'inventory/item_edit.html', {'form': form})
 
+def item_delete(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    if request.method == "POST":
+        item.delete()
+        return redirect('item_list')
+    return render(request, 'inventory/item_confirm_delete.html', {'item': item})
